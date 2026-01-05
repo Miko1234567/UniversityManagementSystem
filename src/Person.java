@@ -1,6 +1,5 @@
 import java.util.Objects;
 
-// Абстракция: Жалпы адам бейнесі
 public abstract class Person {
     private String name;
 
@@ -12,7 +11,6 @@ public abstract class Person {
         return name;
     }
 
-    // Полиморфизм: toString әдісін барлық мұрагерлер үшін дайындау
     @Override
     public String toString() {
         return "Name: " + name;
