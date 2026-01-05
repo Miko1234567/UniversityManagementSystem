@@ -1,30 +1,62 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 public class University {
-    private String universityName;
-    private String city;
+    private String name;
+    private List<Professor> professors; 
+    private List<Course> courses;       
 
-    public University(String universityName, String city) {
-        this.universityName = universityName;
-        this.city = city;
+    public University(String name) {
+        this.name = name;
+        this.professors = new ArrayList<>();
+        this.courses = new ArrayList<>();
     }
 
-    public String getUniversityName() {
-        return universityName;
+    // Тізімге қосу әдістері
+    public void addProfessor(Professor p) {
+        professors.add(p);
     }
 
-    public void setUniversityName(String universityName) {
-        this.universityName = universityName;
+    public void addCourse(Course c) {
+        courses.add(c);
     }
 
-    public String getCity() {
-        return city;
+    
+    public Course findCourse(String courseName) {
+        for (Course c : courses) {
+            if (c.getCourseName().equalsIgnoreCase(courseName)) {
+                return c;
+            }
+        }
+        System.out.println("Course not found: " + courseName);
+        return null;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+   
+    public void filterCoursesByCredits(int minCredits) {
+        System.out.println("\n--- Filtering: Courses with > " + minCredits + " credits ---");
+        for (Course c : courses) {
+            if (c.getCredits() > minCredits) {
+                System.out.println(c);
+            }
+        }
     }
 
-    public void displayInfo() {
-        System.out.println("University: " + universityName + ", City: " + city);
+    
+    public void sortProfessorsByName() {
+        // Comparator қолдану
+        Collections.sort(professors, Comparator.comparing(Professor::getName));
+        System.out.println("\n--- Sorted Professors List ---");
+        for (Professor p : professors) {
+            System.out.println(p);
+        }
+    }
+
+    public void displayAllInfo() {
+        System.out.println("University: " + name);
+        System.out.println("Total Professors: " + professors.size());
+        System.out.println("Total Courses: " + courses.size());
     }
 }
-
