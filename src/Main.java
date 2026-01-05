@@ -1,27 +1,22 @@
 public class Main {
     public static void main(String[] args) {
-
-        University university = new University("ENU", "Astana");
-
-        Professor professor1 = new Professor("A. Saparov", "Computer Science");
-        Professor professor2 = new Professor("B. Tulegenova", "Mathematics");
-
-        Course course1 = new Course("Object Oriented Programming", 5);
-        Course course2 = new Course("Algorithms", 4);
-
-        university.displayInfo();
-
-        professor1.displayInfo();
-        professor2.displayInfo();
-
-        course1.displayInfo();
-        course2.displayInfo();
-
-        // Compare courses
-        if (course1.getCredits() > course2.getCredits()) {
-            System.out.println(course1.getCourseName() + " has more credits than " + course2.getCourseName());
-        } else {
-            System.out.println(course2.getCourseName() + " has more credits than " + course1.getCourseName());
+        University myUni = new University("ENU");
+        myUni.addProfessor(new Professor("Z. Ayman", "Physics"));
+        myUni.addProfessor(new Professor("A. Saparov", "CS"));
+        myUni.addProfessor(new Professor("B. Tulegenova", "Math"));
+        myUni.addCourse(new Course("Java Programming", 5));
+        myUni.addCourse(new Course("History", 3));
+        myUni.addCourse(new Course("Algorithms", 6));
+        myUni.displayAllInfo();
+        myUni.sortProfessorsByName();
+        myUni.filterCoursesByCredits(4);
+        System.out.println("\n--- Searching for 'History' ---");
+        Course found = myUni.findCourse("History");
+        if(found != null) {
+            System.out.println("Found: " + found.toString());
         }
+        Course c1 = new Course("Java", 5);
+        Course c2 = new Course("Java", 5);
+        System.out.println("\nAre c1 and c2 equal? " + c1.equals(c2)); // true болуы керек
     }
 }
